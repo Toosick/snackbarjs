@@ -1,36 +1,65 @@
 #snackbar-container {
-  position: fixed;
-  left: 20px;
-  bottom: 0;
-  z-index: 99999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%
 }
 .snackbar {
-  overflow: hidden;
-  clear: both;
-  min-width: 288px;
-  max-width: 568px;
-  cursor: pointer;
-  opacity: 0;
+    display: inline-block;
+    min-width: 100%;
+    max-height: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0s .25s, max-height .25s, -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+    transition: opacity 0s .25s, max-height .25s, -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+    transition: transform .25s cubic-bezier(0, 0, .2, 1), opacity 0s .25s, max-height .25s;
+    transition: transform .25s cubic-bezier(0, 0, .2, 1), opacity 0s .25s, max-height .25s, -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%)
+}
+.snackbar.toast .snackbar-content {
+    border-radius: 10rem
+}
+.snackbar-content {
+    display: block;
+    padding: .8rem 1.5rem;
+    margin-top: 3px;
+    font-size: .9rem;
+    color: #fff;
+    background-color: #323232;
+    border-radius: 2px
+}
+.snackbar-content .btn,
+.snackbar-content .custom-file-control:before {
+    margin-bottom: 0
 }
 .snackbar.snackbar-opened {
-  height: auto;
-  opacity: 1;
+    max-height: 100px;
+    opacity: 1;
+    -webkit-transition: opacity 0s 0s, max-height .25s, -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+    transition: opacity 0s 0s, max-height .25s, -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+    transition: transform .25s cubic-bezier(0, 0, .2, 1), opacity 0s 0s, max-height .25s;
+    transition: transform .25s cubic-bezier(0, 0, .2, 1), opacity 0s 0s, max-height .25s, -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
 }
-@media (max-width: 767px) {
-  #snackbar-container {
-    left: 0px !important;
-    right: 0px;
-    width: 100%;
-  }
-  #snackbar-container .snackbar {
-    min-width: 100%;
-  }
-  #snackbar-container [class="snackbar snackbar-opened"] ~ .snackbar.toast {
-    margin-top: 20px;
-  }
-  #snackbar-container [class="snackbar snackbar-opened"] {
-    border-radius: 0;
-    margin-bottom: 0;
-  }
+@media (min-width: 544px) {
+    #snackbar-container {
+        right: 1rem;
+        left: 1rem;
+        width: 100%
+    }
+    .snackbar {
+        min-width: 280px
+    }
 }
-/*# sourceMappingURL=snackbar.css.map */
